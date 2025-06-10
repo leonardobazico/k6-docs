@@ -11,7 +11,7 @@ You can use this secret source to test your tests quick and easy.
 {{< code >}}
 
 ```bash
-$ k6 run --secret-source=cli=mysecret=value script.js
+$ k6 run --secret-source=mock=mysecret=value script.js
 ```
 
 ```docker
@@ -29,6 +29,16 @@ You can even use multiple ones and have some of them named or set as default.
 ```bash
 $ k6 run --secret-source=mock=default,cool="cool secret" --secret-source=mock=name=another,cool="not cool secret" multi-source.test.js
 ```
+
+```docker
+$ docker run -it --rm \
+    -v <scriptdir>:/scripts \
+    grafana/k6 run --secret-source=mock=default,cool="cool secret" --secret-source=mock=name=another,cool="not cool secret" multi-source.test.js
+```
+
+{{< /code >}}
+
+{{< code >}}
 
 ```javascript
 import secrets from "k6/secrets";
